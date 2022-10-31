@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+   background-color: rgb(114, 139, 139);
+   font-family: Helvetica, sans-serif;
+}
+
+p.thick {
+  font-weight: bold;
+}
+
+#myDIV {
+  width: 300px;
+  color: rgb(0, 255, 21);
+  animation: mymove 10s infinite;
+}
+
+@keyframes mymove {
+  25% {color: blue;}
+}
+</style>
+<script>
+var health = 10
+var healthcap = 10
+var items = 3
+var e = "nothing"
+var ehp = 0
+var edmg = 2
+var weapon = 2
+var money = 0
+var score = 0
+function Fight() {
+  if (e == "nothing") {
+  alert("You can't fight nothing! Pick a level!");
+  }
+  else {
+  ehp -= weapon
+  if (ehp < 1) {
+    alert("Enemy defeated! Gained money and score!");
+    money += 5
+    if (e == "b") {
+      money += 15
+    }
+    else if (e == 6) {
+      money -= 5
+    }
+    if (e == "All that is left.") {
+      alert("You did it.");
+      alert("You destroyed everything.");
+      alert("You've won the world, the universe, the 'left' that is such.");
+      alert("What now.");
+      alert("You dominate the other worlds.");
+      alert("That's right.");
+      alert("I'll give you the weapon.");
+      alert("You will kill.");
+      alert("Or,");
+      alert("You reload this page. Reset this world, like nothing happened whilst still knowing the memories of debris.");
+      alert("It's your choice.");
+      alert("...");
+      alert("No?");
+      alert("Welp. Your choice, not mine.");
+      alert("*You feel the ground shake. Your body moving eratically.");
+      alert("*The world is fading to an infinite nebula, like the one you killed.");
+      alert("*Everything seems... reset.");
+      alert("There. The world is reset.");
+      alert("I know. You know. They don't.");
+      alert("Here is your desires.");
+      alert("*Check self stats.");
+      weapon = 9999999999999999999999999999999999999999999999999999
+      healthcap = 9999999999999999999999999999999999999999999999999999
+      health = 9999999999999999999999999999999999999999999999999999
+      items = 9999999999999999999999999999999999999999999999999999
+      money = 9999999999999999999999999999999999999999999999999999
+      score = "ȱ Won ȱ"
+    }
+    score += 1
+    e = "nothing"
+   }
+   health -= edmg
+   if (health < 1) {
+    alert("You've been defeated!");
+    weapon = 2
+    health = 10
+    e = "nothing"
+    items = 3
+    money = 0
+    score = 0
+    healthcap = 10
+   }
+  }
+}
+</script>
+<script>
+function Heal() {
+  alert("Items left: " + items);
+  if (items > 0) {
+  health = healthcap
+  alert("All healed up! Health back to " + healthcap + ".");
+  items -= 1
+  }
+}
+</script>
+<script>
+function Health() {
+  alert("Health: " + health + ". Weapon Damage: " + weapon + ". Money: " + money + ". Current Score: " + score + ".");
+}
+</script>
+<script>
+function Enemy() {
+  alert("Enemy ID: " + e + ". Enemy HP: " + ehp + ". Enemy Attack: " + edmg + ".");
+}
+</script>
+<script>
+function WeaponUpgrade() {
+  if (money > 14) {
+    weapon += 3
+    money -= 15
+  }
+}
+</script>
+<script>
+function ArmourUpgrade() {
+  if (money > 19) {
+    healthcap += 10
+    money -= 20
+  }
+}
+</script>
+<script>
+function ItemBuy() {
+    if (money > 9) {
+      items += 1
+      money -= 10
+    }
+  }
+</script>
+<script>
+function Cheat() {
+  code = prompt("Please enter your cheat code. Any invalid code won't do anything.", "Example: Isuckatgames123");
+  if (code == "Isuckatgames123") {
+    healthcap = 5
+    health = 5
+    weapon = 1
+  }
+  else if (code == "fight") {
+    alert("A Z̖͔̫͛̿̋h̥̟͗͋v̥́il̢̦̥͎̃̿̀̐ĺ̝̣̱̣͉͌̍͑̈ű̡̧̅e̬͂͊͢s̨͍̺̍͝͠i̮̙̲̺̓͒͌͒ appeared. No more. Much less. Check enemy stats.");
+    e = "dev"
+    ehp = 150
+    edmg = 30
+  }
+}
+function LevelOne() {
+  alert("A slime appeared! How cliche.");
+  e = 1
+  ehp = 10
+  edmg = 2
+}
+</script>
+<script>
+function LevelTwo() {
+  alert("An Urtel appeared! No, it doesn't 'work' underwater.");
+  e = 2
+  ehp = 15
+  edmg = 1
+}
+</script>
+<script>
+function LevelThree() {
+  alert("A Trollux appeared! A troll with 1 big leg isn't a good design.");
+  e = 3
+  ehp = 4
+  edmg = 9
+}
+</script>
+<script>
+function LevelFour() {
+  alert("2 slimes appeared! That's, like, double the critisism.");
+  e = 1
+  ehp = 20
+  edmg = 2
+}
+</script>
+<script>
+function LevelFive() {
+  alert("A Brizzily Gear appeared! It cog- I mean Boss Time!");
+  e = "b"
+  ehp = 50
+  edmg = 4
+}
+</script>
+<script>
+function LevelSix() {
+  alert("An Uper Urtel appeared! Things are etting eal!");
+  e = 4
+  ehp = 15
+  edmg = 3
+}
+</script>
+<script>
+function LevelSeven() {
+  alert("2 Trolluxes appeared! That could make a body.");
+  e = 3
+  ehp = 4
+  edmg = 9
+}
+</script>
+<script>
+function LevelEight() {
+  alert("A Pee Engee appeared! True glory comes in 2 axises.");
+  e = 5
+  ehp = 20
+  edmg = 2
+}
+</script>
+<script>
+function LevelNine() {
+  alert("A line of code appeared! Well, of course it did.");
+  e = ".js line of code"
+  ehp = 6
+  edmg = 6
+}
+</script>
+<script>
+function LevelTen() {
+  alert("A Lento Muerte appeared! Must be a real bad guy.");
+  e = "b"
+  ehp = 100
+  edmg = 0.5
+}
+</script>
+<script>
+function LevelEleven() {
+  alert("A Neutrolaizerr appeared! Don't listen to him.");
+  e = 6
+  ehp = 1
+  edmg = 0.00001
+  alert("Hey pal! I have a deal! If you reload this site, I will personally give you 100 coins! Please, trust me! You'll lose your progress, but it'll be totally worth it! You know all of the jacked up armour you can get with those stuff! You may even be able to defeat my brother! Yes! Please, accept my offer... I have nothing else...");
+}
+</script>
+<script>
+function LevelTwelve() {
+  alert("A ******** appeared? It appears, based on scientific analysis, that this enemy has a password.");
+  e = 7
+  ehp = 12
+  edmg = 3
+}
+</script>
+<script>
+function LevelThirteen() {
+  alert("An Uper Uper Urtle appeared! 'Do you remember me?'");
+  e = 8
+  ehp = 30
+  edmg = 4.5
+}
+</script>
+<script>
+function LevelFourteen() {
+  alert("A triangle of slimes appeared! Looks like a fortress horse ;)");
+  e = 1
+  ehp = 30
+  edmg = 2
+}
+</script>
+<script>
+function LevelFifteen() {
+  alert("An alternate coding language appeared! Looks like a python.");
+  e = "b"
+  ehp = 50
+  edmg = 3
+}
+</script>
+<script>
+function LevelSixteen() {
+  alert("A Test appeared! You better be up for it.");
+  e = 9
+  ehp = 3
+  edmg = 9999999
+}
+</script>
+<script>
+function LevelSeventeen() {
+  alert("A Slirtel appeared! Seems ones experiment went wrong.");
+  e = "1 + 2"
+  ehp = 25
+  edmg = 3
+}
+</script>
+<script>
+function LevelEighteen() {
+  alert("A Jaypeejea appeared! The best kind of art comes in 3 number values between 256 (I think?).");
+  e = 10
+  ehp = 50
+  edmg = 6
+}
+</script>
+<script>
+function LevelNineteen() {
+  alert("A Waterlad appeared! As wet as a soaky rag.");
+  e = 11
+  ehp = 66
+  edmg = 11
+}
+</script>
+<script>
+function LevelTwenty() {
+  alert("A Deneutrolaizerr appeared! Seems mad.");
+  e = "b"
+  ehp = 200
+  edmg = 8
+  alert("You. Yeah, you. I have a deal for you. You're the one who killed my bro, right? Well, how about you give me your body, and I'll give you a sharp expensive knife to go with your forehead.");
+}
+</script>
+<script>
+function Level21() {
+  alert("An Uper Uper Uper Urtel appeared! Pretty Uper.");
+  e = 12
+  ehp = 100
+  edmg = 8
+}
+</script>
+<script>
+function Level22() {
+  alert("An Obsurd Slime appeared! Things are getting real for real!");
+  e = 13
+  ehp = 169
+  edmg = 20
+}
+</script>
+<script>
+function Level23() {
+  alert("Everything combined appeared! Don't bother calculating. It's not that accurate.");
+  e = "All of the above"
+  ehp = 500
+  edmg = 50
+}
+</script>
+<script>
+function Level24() {
+  alert("An Above Entity appeared! Blessed be.");
+  e = 14
+  ehp = 750
+  edmg = 100
+}
+</script>
+<script>
+function Level25() {
+  alert("A snail appeared! It seems to have a glowing god-like aura.");
+  e = 15
+  ehp = 1000
+  edmg = 150
+}
+</script>
+<script>
+function Level26() {
+  alert("A group of shadows appeared! You suggest the difficulty. It is always better than you.");
+  e = 16
+  ehp = health *= 10
+  edmg = weapon *= 10
+  alert("Shhhhhhhhhhhhhhhhhhhhhh.........");
+}
+</script>
+<script>
+function Level27() {
+  alert("An object that could only be The Sun appeared! You can't even look at your foe. Killing it will end the world.");
+  e = 17
+  ehp = 98000
+  edmg = 1780
+}
+</script>
+<script>
+function Level28() {
+  alert("The Golden Globe (actual solar system) appeared even if it was always there! And yes, you still only get 5 coins.");
+  e = "18 Totally real btw"
+  ehp = 146800
+  edmg = 24000
+}
+</script>
+<script>
+function Level29() {
+  alert("The fathem of space appeared! You needed to become a god to come here. You will destroy nothing but all.");
+  e = "Everything"
+  ehp = 9999999999
+  edmg = 678900
+}
+</script>
+<script>
+function Level30() {
+  alert("The final left entities are in your way. Kill them. Win everything in debris.");
+  e = "All that is left."
+  ehp = 333333333333333333
+  edmg = 9865000
+}
+</script>
+</head>
+<body>
+<div id="myDIV">
+<h2>JAVARPG</h2>
+
+<p id="demo">Play with the buttons below. These are only useful in a battle.</p>
+<button type="button" onclick="Fight()">Fight</button>
+<button type="button" onclick="Heal()">Heal</button>
+<button type="button" onclick="Health()">Self Stats</button>
+<button type="button" onclick="Enemy()">Enemy Stats</button>
+
+<p id="demo">Below is the store. Please yourself to these items!</p>
+<button type="button" onclick="WeaponUpgrade()">Upgrade your weapon $15</button>
+<button type="button" onclick="ArmourUpgrade()">Upgrade your armour $20</button>
+<button type="button" onclick="ItemBuy()">Buy a Healer item $10</button>
+
+<p id="demo">Below is the level select. You can pick any weapon you want, but you should probably start from the first level. (Warning: Not all levels are possible at the start. I had to spend like 20 minutes trying to beat level 3 and haven't gotten anywhere so I nerfed it a bit.</p>
+<p id="demo"><u><b>Baby's first HTML game:</b></u></p>
+<button type="button" onclick="LevelOne()">Level 1</button>
+<button type="button" onclick="LevelTwo()">Level 2</button>
+<button type="button" onclick="LevelThree()">Level 3</button>
+<button type="button" onclick="LevelFour()">Level 4</button>
+<button type="button" onclick="LevelFive()">Ѫ Level 5 Ѫ</button>
+
+<p id="demo"><u><b>Easy:</b></u></p>
+<button type="button" onclick="LevelSix()">Level 6</button>
+<button type="button" onclick="LevelSeven()">Level 7</button>
+<button type="button" onclick="LevelEight()">Level 8</button>
+<button type="button" onclick="LevelNine()">Level 9</button>
+<button type="button" onclick="LevelTen()">Ѫ Level 10 Ѫ</button>
+
+<p id="demo"><u><b>Medium:</b></u></p>
+<button type="button" onclick="LevelEleven()">Level 11</button>
+<button type="button" onclick="LevelTwelve()">Level 12</button>
+<button type="button" onclick="LevelThirteen()">Level 13</button>
+<button type="button" onclick="LevelFourteen()">Level 14</button>
+<button type="button" onclick="LevelFifteen()">Ѫ Level 15 Ѫ</button>
+
+<p id="demo"><u><b>Δ Hard Δ:</b></u></p>
+<button type="button" onclick="LevelSixteen()">Level 16</button>
+<button type="button" onclick="LevelSeventeen()">Level 17</button>
+<button type="button" onclick="LevelEighteen()">Level 18</button>
+<button type="button" onclick="LevelNineteen()">Level 19</button>
+<button type="button" onclick="LevelTwenty()">Ѫ Level 20 Ѫ</button>
+
+<p id="demo"><u><b>Ϫ Insane Ϫ:</b></u></p>
+<button type="button" onclick="Level21()">Ϫ Level 21 Ϫ</button>
+<button type="button" onclick="Level22()">Ϫ Level 22 Ϫ</button>
+<button type="button" onclick="Level23()">Ϫ Level 23 Ϫ</button>
+
+<p id="demo"><u><b>Ѧ Irrationaly Difficult Ѧ:</b></u></p>
+<button type="button" onclick="Level24()">Ѧ Level 24 Ѧ</button>
+<button type="button" onclick="Level25()">Ѧ Level 25 Ѧ</button>
+<button type="button" onclick="Level26()">Ѧ Level 26 Ѧ</button>
+
+<p id="demo"><u><b>⎉ Extremity Maximus ⎉:</b></u></p>
+<button type="button" onclick="Level27()">⎉ Level 27 ⎉</button>
+<button type="button" onclick="Level28()">⎉ Level 28 ⎉</button>
+<button type="button" onclick="Level29()">⎉ Level 29 ⎉</button>
+
+<p id="demo"><u><b>⌘ Blatant Impossible ⌘:</b></u></p>
+<button type="button" onclick="Level30()">⌘ Final Level ⌘</button>
+
+<p id="demo"><u><b>Game Codes</b></u></p>
+<button type="button" onclick="Cheat()">Enter a code</button>
+
+<p id="demo"><u><b>Enemy Images in order because why not</b></u></p>
+<p><img src="slime.gif" alt="Slime" style="width:128px;height:128px;"></p>
+<p><img src="urtel.gif" alt="Urtel" style="width:128px;height:128px;"></p>
+<p><img src="trollux.gif" alt="Trollux" style="width:128px;height:128px;"></p>
+<p><img src="brizz.gif" alt="Brizzily Gear" style="width:256px;height:256px;"></p>
+<p><img src="png.gif" alt="Pee Engee" style="width:128px;height:128px;"></p>
+
+<p id="demo"><u><b>Audio to use while playing/Game OST. All credit to Garageband iOS.</b></u></p>
+<p id="demo">Ready for a Fight! (Song used during the start)</p>
+<audio controls>
+  <source src="Ready for a fight!.mp3" type="audio/mp3">
+Epic banger goes here. If you're reading this, your browser doesn't support the audio.
+</audio>
+<p id="demo">Final Debris (You can guess where this is used.</p>
+<audio controls>
+<source src="Final Debris.mp3" type="audio/mp3">
+Epic banger goes here. If you're reading this, your browser doesn't support the audio.
+</audio>
+
+<p id="demo"><u><b>Walkthrough</b></u></p>
+<p id="demo">Walkthrough should go here.</p>
+
+<p id="demo"><u><b>Animation</b></u></p>
+<p id="demo">Pfff. Yeah right.</p>
+
+</body>
+</html>
