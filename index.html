@@ -1,0 +1,452 @@
+<style>
+body {
+ background-image: linear-gradient(black, rgb(16, 0, 53));
+ color: white;
+ align-items: center;
+ text-align: center;
+ align-content: center;
+ align-self: center;
+ font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ border: 6px double rgb(60, 0, 128);
+ border-radius: 15px;
+ border-color: rgb(60, 0, 128);
+ zoom: 70%;
+}
+
+h1 {
+ font-size: 60px;
+}
+
+.button {
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: rgb(22, 0, 121); 
+  color: rgb(255, 255, 255); 
+  border: 2px solid #12002b;
+}
+
+.button1:hover {
+  background-color: #0d0049;
+  color: white;
+}
+</style>
+
+<h1>Wacky Worlds</h1>
+
+<h2 id="worldtag">World 0: Undefined | Age: 0</h2>
+<img id="worldimg"src="normal.png">
+<br>
+<br>
+<button id="start" class="button button1" onclick="start()">Start World</button>
+<br>
+<button id="next" class="button button1" onclick="next()">Initiate 1 Year Transition</button>
+<h2 id="log">[Event Log]</h2>
+
+<script>
+var worldnum = 0
+var age = 0
+var population = 0
+var earthhealth = 100
+var sanity = 50
+var citizenhealth = 100
+
+function start() {
+ worldnum += 1
+ document.getElementById("log").innerHTML = "World number changed!"
+ cname1()
+ cname2()
+ document.getElementById("log").innerHTML = "World name generated!"
+ populate()
+ age = 0
+ document.getElementById("log").innerHTML = "Age reset to 0! Your world has been created! Rock your world."
+ citizenhealth = 100
+ sanity = 50
+ earthhealth = 100
+}
+
+var NewImage
+
+function populate() {
+ population = Math.floor((Math.random() * 12000000) + 3000000)
+ if (population < 6000000) {
+  NewImage = "small.png"
+  var img = document.getElementById("worldimg");
+  img.src=NewImage;
+  return false;
+ }
+ else if (population > 6000000 && population < 9000000) {
+  NewImage = "normal.png"
+  var img = document.getElementById("worldimg");
+  img.src=NewImage;
+  return false;
+ }
+ else if (population > 9000000) {
+  NewImage = "large.png"
+  var img = document.getElementById("worldimg");
+  img.src=NewImage;
+  return false;
+ }
+}
+
+var pfortune
+var pmisfortune
+var pnortune
+var padvancement
+
+var advancementchance
+
+function next() {
+ age += 1
+ document.getElementById("log").innerHTML = "Age added!"
+ fortune()
+ misfortune()
+ nortune()
+ advancementchance = Math.floor((Math.random() * 5) + 1)
+ if (advancementchance === 3) {
+  advancement()
+ }
+ document.getElementById("log").innerHTML = "Some things have Happened!"
+ deathcheck()
+}
+
+var randomtune
+
+function fortune() {
+ randomtune = Math.floor((Math.random() * 3) + 1)
+ if (age < 13) {
+  if (randomtune === 1) {
+   pfortune = "The citizens of the world have found delicious food from near islands!"
+   earthhealth += 3
+   citizenhealth += 4
+  }
+  else if (randomtune === 2) {
+   pfortune = "The citizens found new land with good terrain!"
+  }
+  else if (randomtune === 3) {
+   pfortune = "With some materials, the citizens are beginning to make modern-esc buildings!"
+   sanity += 20
+  }
+ }
+ else if (age > 13 && age < 23) {
+  if (randomtune === 1) {
+   pfortune = "The citizens have developped another town!"
+   earthhealth -= 10
+  }
+  else if (randomtune === 2) {
+   pfortune = "The citizens have started making basic appliances!"
+   sanity += 10
+   citizenhealth -= 5
+  }
+  else if (randomtune === 3) {
+   pfortune = "The citizens look fancy as hell in their new clothes!"
+  }
+ }
+ else if (age > 23) {
+  if (randomtune === 1) {
+   pfortune = "The citizens have made jobs much more convenient!"
+   sanity += 10
+  }
+  else if (randomtune === 2) {
+   pfortune = "The citizens of the world have developed newer and greater communication!"
+   sanity -= 5
+  }
+  else if (randomtune === 3) {
+   pfortune = "The cars of the future are zooming even faster!"
+   earthhealth -= 15
+   citizenhealth -= 5
+  }
+ }
+ alert(pfortune)
+}
+
+function misfortune() {
+ randomtune = Math.floor((Math.random() * 3) + 1)
+ if (age < 13) {
+  if (randomtune === 1) {
+   pmisfortune = "A quarter of the world have died from a devious plague!"
+   population *= 0.75
+   citizenhealth -= 30
+   sanity -= 10
+  }
+  else if (randomtune === 2) {
+   pmisfortune = "Some terrain has killed some citizens!"
+   population *= 0.9
+  }
+  else if (randomtune === 3) {
+   pmisfortune = "The citizens are struggling to find food!"
+   citizenhealth -= 20
+  }
+ }
+ else if (age > 13 && age < 23) {
+  if (randomtune === 1) {
+   pmisfortune = "A major collision with a building has killed a lot of citizens!"
+   population *= 0.95
+   sanity -= 10
+  }
+  else if (randomtune === 2) {
+   pmisfortune = "The citizens have been demolishing a lot of land!"
+   earthhealth -= 20
+  }
+  else if (randomtune === 3) {
+   pmisfortune = "A big building has been built again!"
+   earthhealth -= 10
+  }
+ }
+ else if (age > 23) {
+  if (randomtune === 1) {
+  pmisfortune = "A failed experiment exploded tons of land!"
+   earthhealth -= 5
+   population -= 500
+  }
+  else if (randomtune === 2) {
+   pmisfortune = "More advanced fast food is ruining the health of the citizens!"
+   citizenhealth -= 30
+  }
+  else if (randomtune === 3) {
+   pmisfortune = "Your world is getting closer to losing any source of nature!"
+   earthhealth -= 10
+  }
+ }
+ alert(pmisfortune)
+}
+
+function nortune() {
+ randomtune = Math.floor((Math.random() * 3) + 1)
+ if (age < 13) {
+  if (randomtune === 1) {
+   pnortune = "The citizens are mixing food!"
+   citizenhealth += 5
+   sanity -= 5
+  }
+  else if (randomtune === 2) {
+   pnortune = "The citizens are reproducing!"
+   population *= 1.15
+  }
+  else if (randomtune === 3) {
+   pnortune = "This land... is cleeeeeeean..."
+   earthhealth += 1
+   sanity -= 1
+  }
+ }
+ else if (age > 13 && age < 23) {
+  if (randomtune === 1) {
+   pnortune = "The citizens are making packaged products!"
+   earthhealth -= 3
+  }
+  else if (randomtune === 2) {
+   pnortune = "The birth rate is rising up!"
+   earthhealth -= 5
+   population *= 1.2
+  }
+  else if (randomtune === 3) {
+   pnortune = "The citizens are planting various things in their gardens!"
+   earthhealth += 5
+   sanity += 15
+  }
+ }
+ else if (age > 23) {
+  if (randomtune === 1) {
+   pnortune = "That house over there was demolished to make 2 more houses!"
+   earthhealth -= 5
+   sanity -= 3
+  }
+  else if (randomtune === 2) {
+   pnortune = "A new movie from a best selling series was released!"
+   sanity += 10
+  }
+  else if (randomtune === 3) {
+   pnortune = "Hospitals are now using much more advanced technology!"
+   earthhealth -= 5
+   sanity += 10
+   citizenhealth -= 5
+  }
+ }
+ alert(pnortune)
+}
+
+function advancement() {
+ randomtune = Math.floor((Math.random() * 3) + 1)
+ if (age < 13) {
+  if (randomtune === 1) {
+   padvancement = "The citizens have discovered basic materials!"
+   sanity += 10
+  }
+  else if (randomtune === 2) {
+   padvancement = "The citizens have produced fire!"
+   earthhealth -= 3
+  }
+  else if (randomtune === 3) {
+   padvancement = "Your basic level citizens have started to remedy sickness!"
+   citizenhealth += 10
+  }
+ }
+ else if (age > 13 && age < 23) {
+  if (randomtune === 1) {
+   padvancement = "The citizens have made easy travel!"
+   sanity += 20
+  }
+  else if (randomtune === 2) {
+   padvancement = "The citizens have invented easy communication!"
+   sanity += 5
+  }
+  else if (randomtune === 3) {
+   padvancement = "The citizens have invented the building block of technology: Electricity!"
+   earthhealth -= 5
+   sanity += 15
+  }
+ }
+ else if (age > 23) {
+  if (randomtune === 1) {
+   padvancement = "The citizens can now heal nearly any illness and disability, with some time!"
+   citizenhealth += 10
+  }
+  else if (randomtune === 2) {
+   padvancement = "The citizens have invented tImE tRaVeL!"
+   earthhealth += 5
+  }
+  else if (randomtune === 3) {
+   padvancement = "The citizens can now swap bodies, genes, DNA and minds!"
+   sanity -= 15
+   citizenhealth += 5
+  }
+ }
+ alert(padvancement)
+}
+
+var deathcause
+var deathpicker
+
+function deathcheck() {
+ if (sanity < 0.1) {
+  population = 0
+  deathpicker = Math.floor((Math.random() * 3) + 1)
+  if (deathpicker === 1) {
+   deathcause = "Everyone killed themselves."
+  }
+  else if (deathpicker === 2) {
+   deathcause = "They used the gun as a pointer."
+  }
+  else if (deathpicker === 3) {
+   deathcause = "Everyone was an enemy."
+  }
+  document.getElementById("log").innerHTML = "Your world have perished! Cause of death: " + deathcause
+ }
+ else if (population < 0.001) {
+  population = 0
+  deathpicker = Math.floor((Math.random() * 3) + 1)
+  if (deathpicker === 1) {
+   deathcause = "Where did everyone go?"
+  }
+  else if (deathpicker === 2) {
+   deathcause = "Bye Bye!"
+  }
+  else if (deathpicker === 3) {
+   deathcause = "Is this some kind of suprise party, or did everyone really vanish?"
+  }
+  document.getElementById("log").innerHTML = "Your world have perished! Cause of death: " + deathcause
+ }
+ else if (earthhealth < 0.1) {
+  population = 0
+  deathpicker = Math.floor((Math.random() * 3) + 1)
+  if (deathpicker === 1) {
+   deathcause = "Well lads, we ran out of gravity."
+  }
+  else if (deathpicker === 2) {
+   deathcause = "Ever seen the Lorax? Yeah, that movie is why."
+  }
+  else if (deathpicker === 3) {
+   deathcause = "And we didn't listen to her... Look at us now."
+  }
+  document.getElementById("log").innerHTML = "Your world have perished! Cause of death: " + deathcause
+ }
+ else if (citizenhealth < 0.1) {
+  population = 0
+  deathpicker = Math.floor((Math.random() * 3) + 1)
+  if (deathpicker === 1) {
+   deathcause = "Someone didn't hit the gym. Oh wait, there was no gym."
+  }
+  else if (deathpicker === 2) {
+   deathcause = "Liver? I hardly knew her!"
+  }
+  else if (deathpicker === 3) {
+   deathcause = "Don't be such a baby. Ribs grow back!"
+  }
+  document.getElementById("log").innerHTML = "Your world have perished! Cause of death: " + deathcause
+ }
+}
+
+var randomname
+var pickedname1
+var pickedname2
+
+function cname1() {
+ randomname = Math.floor((Math.random() * 8) + 1)
+ if (randomname === 1) {
+  pickedname1 = "Eeeth"
+ }
+ else if (randomname === 2) {
+  pickedname1 = "Styrithen"
+ }
+ else if (randomname === 3) {
+  pickedname1 = "Valgamoon"
+ }
+ else if (randomname === 4) {
+  pickedname1 = "Cith"
+ }
+ else if (randomname === 5) {
+  pickedname1 = "Kiplenshkianski"
+ }
+ else if (randomname === 6) {
+  pickedname1 = "Upanian"
+ }
+ else if (randomname === 7) {
+  pickedname1 = "Hollocks"
+ }
+ else if (randomname === 8) {
+  pickedname1 = "Planethias"
+ }
+}
+
+function cname2() {
+ randomname = Math.floor((Math.random() * 8) + 1)
+ if (randomname === 1) {
+  pickedname2 = "The Hooga Plain"
+ }
+ else if (randomname === 2) {
+  pickedname2 = "Steril Salem"
+ }
+ else if (randomname === 3) {
+  pickedname2 = "The Underworld of Space"
+ }
+ else if (randomname === 4) {
+  pickedname2 = "Kip The Flowspace"
+ }
+ else if (randomname === 5) {
+  pickedname2 = "Open Bygoness"
+ }
+ else if (randomname === 6) {
+  pickedname2 = "Yitopius"
+ }
+ else if (randomname === 7) {
+  pickedname2 = "Sugamara"
+ }
+ else if (randomname === 8) {
+  pickedname2 = "That one place no one likes..."
+ }
+}
+
+setInterval(ui, 10)
+
+function ui() {
+ document.getElementById("worldtag").innerHTML = "World " + worldnum + ": " + pickedname1 + " of " + pickedname2 + " | Age: " + age + " | Population: " + (population / 1000000) + "M | Livability: " + earthhealth + "/" + sanity + "/" + citizenhealth
+}
+</script>
