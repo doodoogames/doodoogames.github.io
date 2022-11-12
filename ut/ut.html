@@ -1,0 +1,912 @@
+<style>
+html, body {
+  width: 100%;
+  height:100%;
+  cursor: url("cursor.ico"), default;
+}
+
+body {
+    background: linear-gradient(-45deg, #52ee86, #3ce761, #31a51a, #084421);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+texttitle {
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 90px;
+    line-height: 100px
+}
+text {
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    align-items: center;
+    line-height: 0px
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.buttonset {
+  background-color: #4cacaf; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.buttonperk {
+  background-color: #af4c4c; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.buttonother {
+  background-color: #5f5656; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button2:disabled {
+  background: transparent;
+  border: none;
+  font-size:0;
+}
+
+</style>
+
+<!-- Emoji Support -->
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<script>
+var NewImage
+NewImage = "Image2"
+
+function changeImage()
+{
+ var img = document.getElementById("image");
+ img.src=NewImage;
+ return false;
+}
+
+function changeVar()
+{
+ alert("The Var has been changed!")
+ NewImage = "Image3"
+}
+
+/*Shrub (Starting Plant) Stats */
+money = 0
+plantvalue = 1
+plantname = "Shrub"
+plantdesc = "Can't get any simpler than a shrub."
+prestigecost = 200
+plantno = 1
+shards = 0
+
+/* Money System */
+
+var money
+var plantvalue
+var shards
+var plantshardvalue
+
+function getMoneyLol() {
+ money += (plantvalue * multi)
+}
+
+function getShardsLol() {
+ if (shardtrue === 1) {
+  shards += plantshardvalue
+ }
+}
+
+
+setInterval(getMoneyLol, 1000)
+setInterval(getShardsLol, 30000)
+</script>
+
+<texttitle>
+<p><b>Ultra Terrarium</b></p>
+</texttitle>
+
+<text>
+<h1><p id="name"><b>PLANTNAME</b></p></h1>
+<p id="desc">FUNNYDESCRIPTION</p>
+<p id="cash">MONEY</p>
+<p><img id="image" src="shrub.png"></img></p>
+</text>
+
+<script>
+
+/* UI Updates */
+
+var plantname
+var plantdesc
+
+function updateUI() {
+ document.getElementById("name").innerHTML = plantname;
+ document.getElementById("desc").innerHTML = plantdesc;
+ document.getElementById("cash").innerHTML = "$" + money + " * " + multi + ". " + shards + " Shards";
+ document.getElementById("upgradecrit").innerHTML = "Upgrade Sprout Chance $" + critupgradecost + " 🍀";
+ document.getElementById("upgrademulti").innerHTML = "Upgrade Multiplier $" + multiupgradecost + " 🌾";
+ document.getElementById("upgradeinterval").innerHTML = "Upgrade Money Boost $" + intervalupgradecost + " 🥀";
+}
+
+setInterval(updateUI, 10)
+
+/* New Plant */
+
+var prestigecost
+var prestigeaction
+var plantno
+
+function getNewPlant() {
+ prestigeaction = prompt("Buy the next plant for $" + prestigecost + "? (Y for yes, N for no)")
+ if (prestigeaction === "Y") 
+ {
+  if (money >= prestigecost) {
+   alert("Check out your new plant!")
+   plantno += 1
+   money -= prestigecost
+   PlantChange()
+  }
+  else {
+   alert("You need $" + (prestigecost - money))
+  }
+ }
+}
+
+function PlantChange() {
+  if (plantno === 0) {
+  var img = document.getElementById("image");
+  img.src="devshrub.png";
+  plantname = "Codename Devshrub"
+  plantdesc = "So how long did it take for you to find this code?"
+  plantvalue = 100000000
+  plantshardvalue = 10000000
+  prestigecost = 0
+  shardtrue = 1
+  plantshardvalue = 10000000
+  document.getElementById("newPlantAudio").play();
+  return false;
+ }
+ if (plantno === 1) {
+  var img = document.getElementById("image");
+  img.src="moonshrub.gif";
+  plantvalue = 1
+  plantname = "Shrub"
+  plantdesc = "Can't get any simpler than a shrub."
+  prestigecost = 200
+  plantno = 1
+  document.getElementById("newPlantAudio").play();
+  return false;
+ }
+ if (plantno === 2) {
+  var img = document.getElementById("image");
+  img.src="moonshrub.gif";
+  plantname = "Moon Shrub"
+  plantdesc = "I guess you could call it... a SHINY SHRUB!"
+  plantvalue = 2
+  prestigecost = 500
+  document.getElementById("newPlantAudio").play();
+  return false;
+ }
+ if (plantno === 3) {
+  var img = document.getElementById("image");
+  img.src="veinsour.gif";
+  plantname = "Veinsore"
+  plantdesc = "Well it sure is an eye sore."
+  plantvalue = 3
+  prestigecost = 1000
+  document.getElementById("newPlantAudio").play();
+  return false;
+ }
+ if (plantno === 4) {
+  var img = document.getElementById("image");
+  img.src="mirroot.gif";
+  plantname = "Mirroot"
+  plantdesc = "Hmm... I wonder what that mirror is for?"
+  plantvalue = 6
+  prestigecost = 5500
+  newknowledge = 1
+  curknowledge = "Log 1: I found this random plant, but it appears to have a mirror slicing in through the middle, or attached to the side? After I get my next plant, I'm going to tear off the mirror, or at least study it more.";
+  document.getElementById("newPlantAudioKnowledge").play();
+  newKnowledgeUI()
+  return false;
+ }
+ if (plantno === 5) {
+  var img = document.getElementById("image");
+  img.src="plario.gif";
+  plantname = "Plario"
+  plantdesc = "It'sa who?"
+  plantshardvalue = 1
+  plantvalue = 8
+  prestigecost = 10500
+  newknowledge = 1
+  curknowledge = "Log 1.1: I've got some tools, and am now attempting to seperate the shield. It doesn't seem like it can split, as when I touch it, it just disables itself. However, I have gotten the plant off it, and now it's generating weird rocks? I'm not sure what I can do with them, but I'll keep them, just in case.";
+  curknowledgereward = 1
+  shardtrue = 1
+  document.getElementById("newPlantAudioKnowledge").play();
+  newKnowledgeUI()
+  return false;
+ }
+ if (plantno === 6) {
+  var img = document.getElementById("image");
+  img.src="casinoflower.png";
+  plantname = "Casino Flower"
+  plantdesc = "'Hey kid. Wanna trade?'"
+  plantvalue = 0
+  plantshardvalue = 0
+  prestigecost = 0
+  curknowledge = "Log 1.1: I've got some tools, and am now attempting to seperate the shield. It doesn't seem like it can split, as when I touch it, it just disables itself. However, I have gotten the plant off it, and now it's generating weird rocks? I'm not sure what I can do with them, but I'll keep them, just in case.";
+  curknowledgereward = 1
+  document.getElementById("newPlantAudio").play();
+  casinoflowerDialogue()
+  return false;
+ }
+ if (plantno === 7) {
+  var img = document.getElementById("image");
+  img.src="SFP.gif";
+  plantname = "SFP"
+  plantdesc = "*Loud annoying beeps*"
+  plantvalue = 11
+  plantshardvalue = 1.5
+  prestigecost = 16780
+  newknowledge = 1
+  curknowledge = "Log 1.2: Some flower with a hat came to me and opened up a casino in my terrarium. I don't even know what to say! I mean... I'll go... but only a few times. I don't want to sell my life to a damn plant.";
+  curknowledgereward = 2
+  document.getElementById("newPlantAudioKnowledge").play();
+  newKnowledgeUI()
+  return false;
+ }
+ if (plantno === 8) {
+  var img = document.getElementById("image");
+  img.src="adynatus.gif";
+  plantname = "Adynatus"
+  plantdesc = "He would need a blessing from the heavens to live peacefully again."
+  plantvalue = 8
+  plantshardvalue = 2.5
+  prestigecost = 18900
+  curknowledge = "Log 1.2: Some flower with a hat came to me and opened up a casino in my terrarium. I don't even know what to say! I mean... I'll go... but only a few times. I don't want to sell my life to a damn plant.";
+  document.getElementById("newPlantAudio").play();
+  newKnowledgeUI()
+  return false;
+ }
+ if (plantno === 9) {
+  var img = document.getElementById("image");
+  img.src="jhemora.gif";
+  plantname = "Jhemora"
+  plantdesc = "May cause wormholes in space, and headaches."
+  plantvalue = 13
+  plantshardvalue = 4
+  prestigecost = 23450
+  newknowledge = 1
+  curknowledge = "Log 1.3: I just got another plant with a shard in it. Right now, I'll leave it, but after, I'll extract it.";
+  document.getElementById("newPlantAudioKnowledge").play();
+  newKnowledgeUI()
+  return false;
+ }
+ if (plantno === 10) {
+  var img = document.getElementById("image");
+  img.src="jhemora2.gif";
+  plantname = "Jhemorath the Cursed"
+  plantdesc = ""
+  plantvalue = 0
+  plantshardvalue = 0
+  prestigecost = 0
+  curknowledge = "Log 1.3: I just got another plant with a shard in it. Right now, I'll leave it, but after, I'll extract it.";
+  document.getElementById("newPlantAudioKnowledge").play();
+  jhemoraDialogue()
+  return false;
+ }
+}
+
+</script>
+
+<br>
+<br>
+<br>
+
+<button id="clickme" class="button button2" onclick="getMoneyLol();">Get Money from Plant 🌻</button>
+<button id="prestige" class="button button2" onclick="getNewPlant();">New Plant 🌱</button>
+
+<br>
+<br>
+<br>
+
+<text>
+<h1>💐 Upgrades 💐</h1>
+</text>
+<button id="upgradecrit" class="button button2" onclick="upgradeCrit();">Upgrade Sprout Chance 🍀</button>
+<button id="upgrademulti" class="button button2" onclick="upgradeMulti();">Upgrade Multiplier 🌾</button>
+<text>
+<p>🌴 More coming soon! 🌴</p>
+</text>
+
+<script>
+var critmulti
+var critchance
+var critupgradecost
+
+var multi
+var multiupgradecost
+
+var interval
+var intervalupgradecost
+
+critmulti = 0
+critupgradecost = 75
+
+multi = 1
+multiupgradecost = 50
+
+interval = 1000
+intervalupgradecost = 120
+
+function upgradeCrit() {
+ if (money >= critupgradecost) {
+  critmulti += 5
+  money -= critupgradecost
+  critupgradecost *= 2
+  document.getElementById("upgradeAudio").play();
+ }
+}
+
+function critFunction() {
+ critchance = Math.floor((Math.random() * 5) + 1);
+ if (critchance === 3) {
+  money += (plantvalue * critmulti) * multi
+ }
+}
+
+function upgradeMulti() {
+ if (money >= multiupgradecost) {
+  multi *= 2
+  money -= multiupgradecost
+  multiupgradecost *= 3
+  document.getElementById("upgradeAudio").play();
+ }
+}
+
+setInterval(critFunction, 1000)
+</script>
+
+<br>
+
+<text>
+<h2>Knowledge 🎇</h2>
+<br>
+<button id="knowledge" class="buttonset button2" onclick="checkKnowledge();">Check Knowledge</button>
+</text>
+
+<script>
+
+var curknowledge
+var curknowledgereward
+var shardtrue
+var newknowledge
+
+shardtrue = 0
+
+function newKnowledgeUI() {
+ if (newknowledge === 1) {
+  document.getElementById("knowledge").innerHTML = "Check Knowledge 🔴";
+ }
+}
+
+function checkKnowledge() {
+ alert(curknowledge)
+ if (curknowledgereward === 1) {
+  alert("You have unlocked shards! They can be exchanged for perks! Although, right now, they do nothing. 💎")
+ }
+ else if (curknowledgereward === 2) {
+  alert("You have unlocked the casino! Finally a use for those shards!")
+ }
+ newknowledge = 0
+ curknowledgereward = 0
+ document.getElementById("knowledge").innerHTML = "Check Knowledge";
+}
+
+var casinofirsttime
+
+function casinoflowerDialogue() {
+ alert("Casino Flower: Hey... kid...")
+ alert("Casino Flower: I don't know if you know, but I see you have some shards. Right?")
+ alert("Casino Flower: Now, I'm going to make a deal with you.")
+ alert("Casino Flower: If you give me a shard, I'll give you money!")
+ alert("Casino Flower: It sounds too good to be true!")
+ alert("Casino Flower: All you got to do is give me the shard, spin the wheel and-")
+ alert("Casino Flower: Um... Yeah... it's a casino.")
+ alert("Casino Flower: So chances are, you may NOT win.")
+ alert("Casino Flower: But might as well give it a try, am I right?")
+ alert("Casino Flower: Yes. I am.")
+ alert("Casino Flower: So move on to the next plant, and I'll see you in the casino!")
+ document.getElementById("perk1").disabled = false;
+ casinofirsttime = 1
+}
+
+var fightfirsttime
+var storefirsttime
+
+var casinospecialdialogue
+var fightspecialdialogue
+
+function jhemoraDialogue() {
+ alert("*Loud poof noise*")
+ alert("Jhemora: WHO DARES OPEN MY-")
+ alert("...")
+ alert("Jhemora: Who are you?")
+ alert("*You explain to Jhemora that you're just a random guy planting stuff*")
+ alert("Jhemora: Alright. That's funny and all, but who REALLY released me.")
+ alert("...")
+ alert("Jhemora: Oh no. I refuse to believe a green bum like you is my cause. Not in a million years.")
+ alert("Jhemora: So, lets's fight, bum!")
+ alert("...")
+ alert("Jhemora: Ah, c'mon! You might have some skill. After all, you freed me, so you MUST'VE expected the consequences, right?")
+ alert("*You remind Jhemora that you are a green bum*")
+ alert("Alright then. I'll play along... but just you wait...")
+ document.getElementById("perk2").disabled = false;
+ fightfirsttime = 1
+ casinospecialdialogue = 1
+}
+
+var casinogame
+
+var pokerfirst
+var pokerhand1
+var pokerhand2
+
+pokerfirst = 1
+
+function casinoPerk1() {
+ if (casinofirsttime === 1) {
+  alert("Hey! You made it!")
+  alert("I mean... you brought the shards, right?")
+  alert("Good! Then we shall get started.")
+  casinofirsttime = 0
+ }
+ if (casinospecialdialogue === 1) {
+  alert("Hey, who's that hot chick?")
+  alert("What? I'm just saying...")
+  alert("I'd like to... uh... plant a... seed... um... in her...")
+  alert("If you know what I mean...")
+  alert("...Anyways,")
+  casinospecialdialogue = 0
+  fightspecialdialogue = 1
+ }
+ if (casinospecialdialogue === 2) {
+  alert("So I see the ghost has opened a shop...")
+  alert("Are you really gonna buy wood instead of dough?")
+  alert("No. You're not.")
+  alert("Just some... friendly advice...")
+  alert("...Anyways,")
+  casinospecialdialogue = 0
+ }
+ casinogame = prompt("Pick your pois- I mean... pick your game! (1 = UI Poker)")
+ if (casinogame === "1") {
+  if (pokerfirst === 1) {
+  alert("'UI Poker?' You're asking yourself? What does it mean?")
+  alert("It means UnInteractive Poker!")
+  alert("... What? You want a real game? You're gonna have to wait! I just got here!")
+  alert("So then...")
+  pokerfirst = 0
+  }
+  alert("The buy-in fee is 1 Shard.")
+  if (shards >= 1) {
+   shards -= 1
+   alert("Let's begin! I'll give you your 5 cards.")
+   pokerhand1 = Math.floor((Math.random() * 5) + 1)
+   if (pokerhand1 === 1) {
+    alert("You have a pair!")
+   }
+   else if (pokerhand1 === 2) {
+    alert("You have two pair!")
+   }
+   else if (pokerhand1 === 3) {
+    alert("You have three of a kind!")
+   }
+   else if (pokerhand1 === 4) {
+    alert("You have a flush!")
+   }
+   else if (pokerhand1 === 5) {
+    alert("You have a full house!!!")
+   }
+   pokerhand2 = Math.floor((Math.random() * 5) + 1)
+   if (pokerhand2 === 1) {
+    alert("We have a pair!")
+   }
+   else if (pokerhand2 === 2) {
+    alert("We have two pair!")
+   }
+   else if (pokerhand2 === 3) {
+    alert("We have three of a kind!")
+   }
+   else if (pokerhand2 === 4) {
+    alert("We have a flush!")
+   }
+   else if (pokerhand2 === 5) {
+    alert("We have a full house!!!")
+   }
+   if (pokerhand1 > pokerhand2) {
+    alert("You've won the hand!")
+    money += (money / 4)
+   }
+   else if (pokerhand2 > pokerhand1) {
+    alert("You've lost the hand...")
+   }
+   else if (pokerhand1 = pokerhand2) {
+    alert("We've tied!")
+    money += (money / 8)
+   }
+  }
+  else {
+   alert("Forgetting something? Like... maybe... the shards?")
+  }
+ }
+ else {
+  alert("Sorry Pal, I don't have that.")
+ }
+}
+
+var fightlevel
+
+function fightPerk2() {
+ if (fightfirsttime === 1) {
+  alert("*sniff sniff")
+  alert("Something smells like major sh-")
+  alert("Oh, it's just you. Why are you following me?")
+  alert("What? Do you WANT a fight?")
+  alert("Oh. You DO want a fight.")
+  alert("Well a bum can't defeat my left hand, let alone my whole body.")
+  alert("So, because and only because I'm bored...")
+  alert("I'll... help... you...")
+  fightlevel = 1
+  fightfirsttime = 0
+ }
+ if (fightspecialdialogue === 1) {
+  alert("I have a question for you.")
+  alert("The flower with the hat. He has always been a creep, yes?")
+  alert("*You explain to Jhemora that he has... deep feelings for her...*")
+  alert("Wha-! Give me a second...")
+  alert("*You hear the ghost give a verbal beat down to the flower*")
+  alert("Are you... sure... he has feeling for me?")
+  alert("Because right now, he's drooling over the profits of his place.")
+  fightspecialdialogue = 0
+ }
+ alert("You are on level " + fightlevel + ".")
+ if (fightlevel === 1) {
+  alert("Welcome, bum.")
+  alert("For your first level...")
+  alert("You'll be up against a dummy!")
+  alert("My bad, you probably can't defeat yourself.")
+  alert("Even if you tried.")
+  alert("Alright, your first target will be this wee little flower.")
+  alert("Wee Little Flower: Please. I beg of you. Spare me!")
+  alert("Don't listen to him. He's a little coo coo.")
+  alert("...Alright. Fine. You don't have to kill the flower.")
+  alert("How about a pillow? That could be a good target!")
+  alert("Are you ready for battle pillow? You're up against a bum!")
+  alert("Yeah, he's ready. Now, FIGHT!")
+  Fight()
+ }
+ if (fightlevel === 1) {
+  alert("Welcome back, bum.")
+  alert("I'm impressed. Not really, but it's nice to know you know the ropes to this battle.")
+  alert("Now here's a real challenge.")
+  alert("*Sparks come out of Jhemora and are absorbed by the pillow*")
+  alert("*The pillow rises up*")
+  alert("Pillow: Oi you!")
+  alert("He's a little mad about what you did to him.")
+  alert("And probably seeks revenge, or whatever you call it.")
+  alert("Pillow: Imma punt your head over for a field goal!")
+  alert("Calm down, you're only a minute old.")
+  alert("Well, put on your battle face and prepare your weapons.")
+  alert("Now, FIGHT!")
+  Fight()
+ }
+}
+
+var fighthealth
+var fightehealth
+var fightdamage
+var fightedamage
+var fightaction
+var randomdamageaddition
+var damagedivision
+var shieldpower
+
+shieldpower = 2
+fighthealth = 10
+fightdamage = 1
+damagedivision = 1
+
+function Fight() {
+ /* Intro and Health/Damage Setting */
+ 
+ if (fightlevel === 1) {
+  alert("You fight the pillow standing as menacing as the number 9.")
+  fightehealth = 3
+  fightedamage = 0
+ }
+ if (fightlevel === 2) {
+  alert("You fight the sentient pillow standing as menacing as the number 11.")
+  fightehealth = 6
+  fightedamage = 1
+ }
+
+ while (fightehealth > 0) {
+
+ /* Fighting System */
+
+ fightaction = prompt("What will you do? Enemy Health = " + fightehealth + ". Your Health = " + fighthealth + " S = Stats, 1 = Fixed Attack, 2 = Random Attack, D = Defend")
+ if (fightaction === "S") {
+  alert("The enemy can damage you for " + fightedamage + ". You can damage it for around " + fightdamage + ".")
+ }
+ else if (fightaction === "D") {
+  alert("You defend the next attack, making it deal half damage!")
+  damagedivision = shieldpower
+ }
+ else if (fightaction === "1") {
+  alert("You deal " + fightdamage + " damage.")
+  fightehealth -= fightdamage
+ }
+ else if (fightaction === "2") {
+  randomdamageaddition = Math.floor((Math.random() * 10) + 1)
+  alert("You wish for luck and deal" + fightdamage + " + " + randomdamageaddition + " damage.")
+  randomdamageaddition -= 3
+  fightehealth -= fightdamage + randomdamageaddition
+  randomdamageaddition = 0
+ }
+ else {
+  alert("You slip while trying to decide what to do and damage your personal image and intelligence.")
+ }
+
+  /* Enemy Fighting */
+
+ alert ("Your foe deals " + (fightedamage / damagedivision) + " damage to you.")
+ fighthealth -= (fightedamage / damagedivision)
+
+  /* Death System */
+
+ if (fighthealth <= 0) {
+  alert("You were defeated!")
+  if (fightlevel === 2) {
+   alert("...I'm dissapointed.")
+   alert("My camera died halfway through the battle.")
+   alert("And you're a huge wuss.")
+   alert("IT'S A PILLOw! You use it for sleep, but now it puts you to sleep itself?")
+   alert("What kind of fairy tale magic is this?")
+   alert("Go again, and I expect the pillow to be DEAD! Not the other way around.")
+  }
+ }
+ if (fightehealth <= 0) {
+  alert("You defeated the foe!")
+  if (fightlevel === 1) {
+   alert("I would say I'm impresed...")
+   alert("...If you weren't fighting a pillow.")
+   alert("Well, get some rest.")
+   alert("Your next threat wont be as... non-living...")
+   alert("*You've unlocked level 2!*")
+  }
+  if (fightlevel === 2) {
+   alert("Wow, you defeated a real threat!")
+   alert("In the cruelest way possible...")
+   alert("I'm proud of you, bum!")
+   alert("Your next threat, however, will be less merciful.")
+   alert("But because you really impressed me there...")
+   alert("*You've unlocked level 3!*")
+   alert("*You've unlocked Jhemora's Store!*")
+   fightlevel = 2
+   document.getElementById("perk2").disabled = false;
+   casinospecialdialogue = 2
+  }
+ }
+
+  /* Other Stuff (During Battle) */
+
+ if (fightlevel === 1) {
+  if (fightehealth > 3) {
+   alert("Hold on... it has more health than usual!")
+   alert("*Jhemora recognizes your idiocy*")
+   alert("Nice work Santa Clutz! You gave it more health!")
+   alert("All you need to do is add some spikes on it, and I bet it'll intimidate you.")
+   fightehealth = 3
+  }
+ }
+ }
+}
+
+var storeoption
+var weaponstoreoption
+var armourstoreoption
+var shieldstoreoption
+var weaponoption
+var armouroption
+var shieldoption 
+
+function storePerk2() {
+ if (storefirsttime === 1) {
+  alert("Bum! Welcome to my store.")
+  alert("Here, you can buy the finest weaponry.")
+  alert("All for the price of your shards!")
+  alert("You can also get armour!")
+  alert("This'll make it so you don't go down in one hit!")
+  alert("Or you can be an idiot and avoid my advice until Level 6.")
+  alert("*Achievement Wink Achievement Wink*")
+  alert("So...")
+  storefirsttime = 0
+  weaponoption = 1
+  armouroption = 1
+  shieldoption = 1
+ }
+ alert("What'll it be today?")
+ storeoption = prompt("W for Weapons, A for Armour, S for Shield.")
+ if (storeoption === "W") {
+  alert("Here's what I got in terms of weapons...")
+  if (weaponoption === 0) {
+   alert("Sorry bum. You sold me out.")
+  }
+  else if (weaponoption === 1) {
+   alert("I give you the wooden sword!")
+   alert("It might not be the sharpest tool in my shed,")
+   alert("But it's a good starting point!")
+   alert("And for you, I give it for free.")
+   fightdamage = 3
+   weaponoption = 0
+  }
+ }
+ else if (storeoption === "A") {
+  alert("Here's what I got in terms of armour...")
+  if (armouroption === 0) {
+   alert("Sorry bum. You sold me out.")
+  }
+  else if (armouroption === 1) {
+   alert("So, here's the deal.")
+   alert("I found wood. I cut wood.")
+   alert("And now I give you some planks to put on you!")
+   alert("And for you, I give it for free.")
+   fighthealth = 12
+   armouroption = 0
+  }
+ }
+ else if (storeoption === "S") {
+  alert("Here's what I got in terms of shields...")
+  if (shieldoption === 0) {
+   alert("Sorry bum. You sold me out.")
+  }
+  else if (shieldoption === 1) {
+   alert("Now here's a beaut.")
+   alert("From the corpse of a shed of grass...")
+   alert("A wooden shield with a bit of grass.")
+   alert("And for you, I give it for free.")
+   shieldpower = 2.2
+   shieldoption = 0
+  }
+ }
+ else {
+  alert("I see you're a little confused. See yourself out and think about what you want for a bit.")
+ }
+}
+</script>
+
+<br>
+
+<!-- Perks -->
+
+<text><h2>Perks 🎆</h2></text>
+
+<button disabled id="perk1" class="buttonperk button2" onclick="casinoPerk1();">Casino 🎲</button>
+<button disabled id="perk2" class="buttonperk button2" onclick="fightPerk2();">Fight 🏹</button>
+<button disabled id="perk3" class="buttonperk button2" onclick="storePerk2();">Store 🧮</button>
+
+<!-- Audio -->
+
+<audio src="NewPlant.mp3" id="newPlantAudio"></audio>
+<audio src="KnowledgeNewPlant.mp3" id="newPlantAudioKnowledge"></audio>
+<audio src="Uprade.mp3" id="upgradeAudio"></audio>
+<audio src="BGM.mp3" autoplay loop id="BGM"></audio>
+
+<!-- Other -->
+
+<button id="devcode" class="buttonother button2" onclick="devCode();">Enter Code 📟</button>
+
+<script>
+
+var code
+
+function devCode() {
+ code = prompt("Enter a code.")
+ if (code === "dev") {
+  plantno = 0
+  PlantChange()
+ }
+}
+
+</script>
+<script>
+/* DNMW is Do not Mess With */
+
+/* Plant Change */
+
+if /* Plant Number (+1 of last plant) */ (plantno === 7) {
+  /* DNMW */ var img = document.getElementById("image");
+  /* Plant Image Name */ img.src="SFP.gif";
+  /* Plant Name */ plantname = "SFP"
+  /* Plant Description */ plantdesc = "*Loud annoying beeps*"
+  /* Plant's Money per Tick' */ plantvalue = 11
+  /* Plant's Shards per Tick' */ plantshardvalue = 1.5
+  /* Cost for New Plant */ prestigecost = 16780
+  /* DNMW */ newknowledge = 1
+  /* Knowledge Information */ curknowledge = "Log 1.2: Some flower with a hat came to me and opened up a casino in my terrarium. I don't even know what to say! I mean... I'll go... but only a few times. I don't want to sell my life to a damn plant.";
+  /* Crutial Information show after Knowledge Info. */ curknowledgereward = 2
+  /* Only Change if no new knowledge */ document.getElementById("newPlantAudioKnowledge").play();
+  /* Plant Name */ newKnowledgeUI()
+  /* DNMW */ return false;
+}
+
+</script>
+<br>
+<br>
+<text><h2>Updates and Changes (Current Version 1.0) 🤓</h2></text>
+<br>
+<text><h3>= The Game is Released!</h3></text>
