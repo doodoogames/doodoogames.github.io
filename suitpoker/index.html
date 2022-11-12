@@ -1,0 +1,827 @@
+<style>
+body {
+ background-image: radial-gradient(green, rgb(0, 56, 0));
+ color: #031400;
+ text-align: center;
+ align-items: center;
+ align-content: center;
+}
+
+@font-face {
+   font-family: stylesm64;
+   src: url(Super-Mario-64-DS.woff);
+}
+
+img {
+ cursor: pointer;
+}
+
+.title {
+ font-size: 45px;
+}
+
+a {
+ color: navy;
+}
+
+a:visited {
+ color: purple;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  text-align: center;
+}
+
+td, th {
+  border: 1px solid #083000;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #1a6e00;
+}
+
+th {
+  background-color: #0e3a00;
+}
+
+.add {
+  background-color: #259e00;
+}
+
+.minus {
+  background-color: #8b0000;
+}
+
+tr:nth-child(odd) {
+  background-color: #124d00;
+}
+</style>
+
+<!-- 
+Card Code
+0 = Spade
+1 = Club
+2 = Kite
+3 = Heart
+4 = Diamond
+5 = Star
+-->
+
+<h1 class="title">Suit Poker</h1>
+
+<h2>Suit Poker, a variant of Picture Poker, is a game based off of the <a href="luigi.html">Luigi Poker</a> table game fron New Super Mario Bros.</h2>
+
+<h2 id="money">Money: $10 | Bet Amount: $1</h2>
+<img id="betup" style="width:34px;height:34px;" src="betup.png" onclick="betup()">
+<img id="betmax" style="width:34px;height:34px;" src="betmax.png" onclick="betmax()">
+
+<br> 
+
+<img id="1" style="width:64px;height:96px" onclick="card(1)" src="3.gif"> <img id="2" style="width:64px;height:96px" onclick="card(2)" src="5.gif"> <img id="3" style="width:64px;height:96px" onclick="card(3)" src="3.gif"> <img id="4" style="width:64px;height:96px" onclick="card(4)" src="5.gif"> <img id="5" style="width:64px;height:96px" onclick="card(5)" src="3.gif">
+<br>
+<img id="1s" style="width:64px;height:31px;" src="state0.png"> <img id="2s" style="width:64px;height:31px;" src="state0.png"> <img id="3s" style="width:64px;height:31px;" src="state0.png"> <img id="4s" style="width:64px;height:31px;" src="state0.png"> <img id="5s" style="width:64px;height:31px;" src="state0.png"> 
+
+<br>
+
+<img id="play" style="width:325px;height:34px;" src="play.png" onclick="play()">
+
+<br>
+<br>
+<br>
+
+<img id="store" style="width:325px;height:34px;" src="store.png" onclick="store()">
+
+<br>
+
+<h3>Hand Winnings</h3>
+<table align="center">
+  <tr>
+   <th>Hand</th>
+   <th>Example</th>
+   <th>Winnings</th>
+  </tr>
+  <tr>
+   <td>Five of a Kind</td>
+   <td>♠♠♠♠♠</td>
+   <td>x16</td>
+ </tr>
+ <tr>
+  <td>Four of a Kind</td>
+  <td>♠♠♠♠</td>
+  <td>x8</td>
+ </tr>
+ <tr>
+  <td>Full House</td>
+  <td>♠♠♠♥♥</td>
+  <td>x6</td>
+ </tr>
+ <tr>
+  <td>Three of a Kind</td>
+  <td>♠♠♠</td>
+  <td>x4</td>
+ </tr>
+ <tr>
+  <td>Two Pair</td>
+  <td>♠♠♥♥</td>
+  <td>x3</td>
+ </tr>
+ <tr>
+  <td>One Pair</td>
+  <td>♠♠</td>
+  <td>x2</td>
+ </tr>
+</table>
+
+<script>
+var gamestate = 0
+
+var card1
+var card1state = 0 
+var card2
+var card2state = 0
+var card3
+var card3state = 0
+var card4
+var card4state = 0
+var card5
+var card5state = 0
+
+var money = 10
+var bet = 1
+
+function state() {
+ gamestate = 1
+}
+
+function store() {
+ var action = prompt("Do you want to buy a bet upgrade for $50? Type 'y' for yes.")
+ if (action === "y") {
+  if (money < 55) {
+   alert("Not enough money! You need atleast $55 dollars, so you have $5 left over to use.")
+  }
+  else if (money > 54) {
+   betlimit += 5
+   alert("You can now bet up to " + betlimit + "!")
+   money -= 50
+  }
+ }
+}
+
+setInterval(moneyui, 10)
+
+var betlimit = 5
+
+function betup() {
+ bet += 1
+ if (bet > betlimit) {
+  bet = betlimit
+ }
+ if (bet > (money - 1)) {
+  bet = (money - 1)
+ }
+}
+
+function betmax() {
+ bet = betlimit
+ if (bet > (money - 1)) {
+  bet = (money - 1)
+ }
+}
+
+function moneyui() {
+ document.getElementById("money").innerHTML = "Money: $" + money + " | Bet Amount: $" + bet
+}
+
+function card(scard) {
+ if (scard === 1) {
+  if (card1state === 0) {
+   card1state = 1
+   var img = document.getElementById("1s");
+   img.src="state1.png";
+   return false;
+  }
+  else if (card1state === 1) {
+   card1state = 0
+   var img = document.getElementById("1s");
+   img.src="state0.png";
+   return false;
+  }
+ }
+ if (scard === 2) {
+  if (card2state === 0) {
+   card2state = 1
+   var img = document.getElementById("2s");
+   img.src="state1.png";
+   return false;
+  }
+  else if (card2state === 1) {
+   card2state = 0
+   var img = document.getElementById("2s");
+   img.src="state0.png";
+   return false;
+  }
+ }
+ if (scard === 3) {
+  if (card3state === 0) {
+   card3state = 1
+   var img = document.getElementById("3s");
+   img.src="state1.png";
+   return false;
+  }
+  else if (card3state === 1) {
+   card3state = 0
+   var img = document.getElementById("3s");
+   img.src="state0.png";
+   return false;
+  }
+ }
+ if (scard === 4) {
+  if (card4state === 0) {
+   card4state = 1
+   var img = document.getElementById("4s");
+   img.src="state1.png";
+   return false;
+  }
+  else if (card4state === 1) {
+   card4state = 0
+   var img = document.getElementById("4s");
+   img.src="state0.png";
+   return false;
+  }
+ }
+ if (scard === 5) {
+  if (card5state === 0) {
+   card5state = 1
+   var img = document.getElementById("5s");
+   img.src="state1.png";
+   return false;
+  }
+  else if (card5state === 1) {
+   card5state = 0
+   var img = document.getElementById("5s");
+   img.src="state0.png";
+   return false;
+   return false;
+  }
+ }
+ return false;
+}
+
+function play() {
+ if (gamestate === 0) {
+  gamestate = 0.5
+  var img = document.getElementById("1");
+  img.src="swap.gif";
+
+  var img = document.getElementById("2");
+  img.src="swap.gif";
+
+  var img = document.getElementById("3");
+  img.src="swap.gif";
+
+  var img = document.getElementById("4");
+  img.src="swap.gif";
+
+  var img = document.getElementById("5");
+  img.src="swap.gif";
+ 
+  card1 = Math.floor((Math.random() * 6) + 1);
+  card2 = Math.floor((Math.random() * 6) + 1);
+  card3 = Math.floor((Math.random() * 6) + 1);
+  card4 = Math.floor((Math.random() * 6) + 1);
+  card5 = Math.floor((Math.random() * 6) + 1);
+  
+  setTimeout(ui1, 1000)
+  setTimeout(ui2, 1400)
+  setTimeout(ui3, 1800)
+  setTimeout(ui4, 2200)
+  setTimeout(ui5, 2600)
+  setTimeout(state, 2600)
+  return false;
+ }
+ else if (gamestate === 1) {
+  if (card1state === 1) {
+  var img = document.getElementById("1");
+  img.src="swap.gif";
+ 
+  card1 = Math.floor((Math.random() * 6) + 1);
+  setTimeout(ui1, 1000)
+  card(1)
+  play()
+  return false;
+  }
+  if (card2state === 1) {
+  var img = document.getElementById("2");
+  img.src="swap.gif";
+ 
+  card2 = Math.floor((Math.random() * 6) + 1);
+  setTimeout(ui2, 1000)
+  card(2)
+  play()
+  return false;
+  }
+  if (card3state === 1) {
+  var img = document.getElementById("3");
+  img.src="swap.gif";
+ 
+  card3 = Math.floor((Math.random() * 6) + 1);
+  setTimeout(ui3, 1000)
+  card(3)
+  play()
+  return false;
+  }
+  if (card4state === 1) {
+  var img = document.getElementById("4");
+  img.src="swap.gif";
+ 
+  card4 = Math.floor((Math.random() * 6) + 1);
+  setTimeout(ui4, 1000)
+  card(4)
+  play()
+  return false;
+  }
+  if (card5state === 1) {
+  var img = document.getElementById("5");
+  img.src="swap.gif";
+ 
+  card5 = Math.floor((Math.random() * 6) + 1);
+  setTimeout(ui5, 1000)
+  card(5)
+  play()
+  return false;
+  }
+  money -= bet
+  gamestate = 2
+  setTimeout(check, 1000)
+ }
+}
+
+function ui1() {
+ if (card1 === 1) {
+  var img = document.getElementById("1");
+  img.src="0.gif";
+ }
+ else if (card1 === 2) {
+  var img = document.getElementById("1");
+  img.src="1.gif";
+ } 
+ else if (card1 === 3) {
+  var img = document.getElementById("1");
+  img.src="2.gif";
+ } 
+ else if (card1 === 4) {
+  var img = document.getElementById("1");
+  img.src="3.gif";
+ } 
+ else if (card1 === 5) {
+  var img = document.getElementById("1");
+  img.src="4.gif";
+ } 
+ else if (card1 === 6) {
+  var img = document.getElementById("1");
+  img.src="5.gif";
+ }
+ return false;
+}
+
+function ui2() {
+ if (card2 === 1) {
+  var img = document.getElementById("2");
+  img.src="0.gif";
+ }
+ else if (card2 === 2) {
+  var img = document.getElementById("2");
+  img.src="1.gif";
+ } 
+ else if (card2 === 3) {
+  var img = document.getElementById("2");
+  img.src="2.gif";
+ } 
+ else if (card2 === 4) {
+  var img = document.getElementById("2");
+  img.src="3.gif";
+ } 
+ else if (card2 === 5) {
+  var img = document.getElementById("2");
+  img.src="4.gif";
+ } 
+ else if (card2 === 6) {
+  var img = document.getElementById("2");
+  img.src="5.gif";
+ } 
+ return false;
+}
+
+function ui3() {
+ if (card3 === 1) {
+  var img = document.getElementById("3");
+  img.src="0.gif";
+ }
+ else if (card3 === 2) {
+  var img = document.getElementById("3");
+  img.src="1.gif";
+ } 
+ else if (card3 === 3) {
+  var img = document.getElementById("3");
+  img.src="2.gif";
+ } 
+ else if (card3 === 4) {
+  var img = document.getElementById("3");
+  img.src="3.gif";
+ } 
+ else if (card3 === 5) {
+  var img = document.getElementById("3");
+  img.src="4.gif";
+ } 
+ else if (card3 === 6) {
+  var img = document.getElementById("3");
+  img.src="5.gif";
+ } 
+ return false;
+}
+
+function ui4() {
+ if (card4 === 1) {
+  var img = document.getElementById("4");
+  img.src="0.gif";
+ }
+ else if (card4 === 2) {
+  var img = document.getElementById("4");
+  img.src="1.gif";
+ } 
+ else if (card4 === 3) {
+  var img = document.getElementById("4");
+  img.src="2.gif";
+ } 
+ else if (card4 === 4) {
+  var img = document.getElementById("4");
+  img.src="3.gif";
+ } 
+ else if (card4 === 5) {
+  var img = document.getElementById("4");
+  img.src="4.gif";
+ } 
+ else if (card4 === 6) {
+  var img = document.getElementById("4");
+  img.src="5.gif";
+ } 
+
+ return false;
+}
+
+function ui5() {
+ if (card5 === 1) {
+  var img = document.getElementById("5");
+  img.src="0.gif";
+ }
+ else if (card5 === 2) {
+  var img = document.getElementById("5");
+  img.src="1.gif";
+ } 
+ else if (card5 === 3) {
+  var img = document.getElementById("5");
+  img.src="2.gif";
+ } 
+ else if (card5 === 4) {
+  var img = document.getElementById("5");
+  img.src="3.gif";
+ } 
+ else if (card5 === 5) {
+  var img = document.getElementById("5");
+  img.src="4.gif";
+ } 
+ else if (card5 === 6) {
+  var img = document.getElementById("5");
+  img.src="5.gif";
+ }
+ return false;
+}
+
+function check() {
+ Voak()
+}
+
+// Five of a Kind
+function Voak() {
+ if (card1 === card2 && card1 === card3 && card1 === card4 && card1 === card5) {
+  bet *= 16
+  money += bet
+  end("five")
+ }
+ else {
+  foak()
+ }
+}
+
+// Four of a Kind
+function foak() {
+ if (
+ card1 === card2 && card1 === card3 && card1 === card4 ||
+ card1 === card2 && card1 === card3 && card1 === card5 ||
+ card1 === card2 && card1 === card5 && card1 === card4 ||
+ card1 === card5 && card1 === card3 && card1 === card4 ||
+ card5 === card2 && card5 === card3 && card5 === card4
+ ) {
+  bet *= 8
+  money += bet
+  end("four")
+ }
+ else {
+  fhouse()
+ }
+}
+
+// Full House
+function fhouse() {
+ // ♠♠♠♥♥
+ if (card1 === card2 && card1 === card3) {
+  if (card4 === card5) {
+   fhousewin()
+   return
+  }
+ }
+
+ // ♠♠♥♠♥
+ if (card1 === card2 && card1 === card4) {
+  if (card3 === card5) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♠♠♥♥♠
+ if (card1 === card2 && card1 === card5) {
+  if (card3 === card4) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♠♥♠♠♥
+ if (card1 === card3 && card1 === card4) {
+  if (card2 === card5) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♠♥♠♥♠
+ if (card1 === card3 && card1 === card5) {
+  if (card2 === card4) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♠♥♥♠♠
+ if (card1 === card4 && card1 === card5) {
+  if (card2 === card3) {
+   fhousewin()
+   return 
+  } 
+ }
+
+ // ♥♠♠♠♥
+ if (card2 === card3 && card2 === card4) {
+  if (card1 === card5) {
+   fhousewin()
+   return 
+  } 
+ }
+
+ // ♥♠♠♥♠
+ if (card2 === card3 && card2 === card5) {
+  if (card1 === card4) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♥♠♥♠♠
+ if (card2 === card4 && card2 === card5) {
+  if (card1 === card3) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♥♠♠♠♥
+ if (card2 === card3 && card2 === card4) {
+  if (card1 === card5) {
+   fhousewin()
+   return 
+  }
+ }
+
+ // ♥♥♠♠♠
+ if (card3 === card4 && card3 === card5) {
+  if (card1 === card2) {
+   fhousewin()
+   return 
+  }
+ }
+ else {
+  IIIoak()
+  return
+ }
+}
+
+
+function fhousewin() {
+ bet *= 6
+ money += bet
+ end("fullhouse")
+}
+
+// Three of a Kind
+function IIIoak() {
+ if (
+ card1 === card2 && card1 === card3 ||
+ card1 === card2 && card1 === card4 ||
+ card1 === card2 && card1 === card5 ||
+ card1 === card3 && card1 === card4 ||
+ card1 === card3 && card1 === card5 ||
+ card1 === card4 && card1 === card5 ||
+ card2 === card3 && card2 === card4 ||
+ card2 === card3 && card2 === card5 ||
+ card2 === card4 && card2 === card5 ||
+ card2 === card3 && card2 === card4 ||
+ card3 === card4 && card3 === card5
+ ) {
+  bet *= 4
+  money += bet
+  end("three")
+ }
+ else {
+  tp()
+ }
+}
+
+// Two Pair
+function tp() {
+ if (card1 === card2 ) {
+  if (
+  card1 === card3 ||
+  card1 === card4 ||
+  card1 === card5 ||
+  card2 === card3 ||
+  card2 === card4 ||
+  card2 === card5 ||
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card1 === card3) {
+  if (
+  card1 === card4 ||
+  card1 === card5 ||
+  card2 === card3 ||
+  card2 === card4 ||
+  card2 === card5 ||
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card1 === card4) {
+  if (
+  card1 === card5 ||
+  card2 === card3 ||
+  card2 === card4 ||
+  card2 === card5 ||
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card1 === card5) {
+  if (
+  card2 === card3 ||
+  card2 === card4 ||
+  card2 === card5 ||
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card2 === card3) {
+  if (
+  card2 === card4 ||
+  card2 === card5 ||
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card2 === card4) {
+  if (
+  card2 === card5 ||
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card2 === card5) {
+  if (
+  card3 === card4 ||
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card3 === card4) {
+  if (
+  card3 === card5 ||
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ if (card3 === card5) {
+  if (
+  card4 === card5
+  ) {
+   tpwin()
+   return
+  }
+ }
+ else {
+  toak()
+ }
+}
+
+function tpwin() {
+ bet *= 3
+ money += bet
+ end("twopair")
+}
+
+// Pair or Two of a Kind
+function toak() {
+ if (
+ card1 === card2 ||
+ card1 === card3 ||
+ card1 === card4 ||
+ card1 === card5 ||
+ card2 === card3 ||
+ card2 === card4 ||
+ card2 === card5 ||
+ card3 === card4 ||
+ card3 === card5 ||
+ card4 === card5 
+ ) {
+  bet *= 2
+  money += bet
+  end("pair")
+ }
+ else {
+  junk()
+ }
+}
+
+// Junk
+function junk() {
+ end("junk")
+}
+
+function end(hand) {
+ bet = 1
+ gamestate = 0
+}
+</script>
+
+<script>
+function syncDelay(milliseconds){
+ var start = new Date().getTime();
+ var end=0;
+ while( (end-start) < milliseconds){
+     end = new Date().getTime();
+ }
+}
+</script>
